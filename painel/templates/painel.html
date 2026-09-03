@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+header{
+    background:#E63946;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.btn-home{
+    background:#2A9D8F;
+    color:white;
+    padding:10px 20px;
+    text-decoration:none;
+    border-radius:10px;
+}
+
+.btn-home:hover{
+    background:#23867B;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:250px;
+    background:white;
+    padding:20px;
+    box-shadow:2px 0 10px rgba(0,0,0,.1);
+}
+
+.sidebar h2{
+    color:#E63946;
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:10px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    background:#f3f3f3;
+    color:#333;
+    text-decoration:none;
+    border-radius:10px;
+}
+
+.sidebar a:hover{
+    background:#FF9F1C;
+    color:white;
+}
+
+.main{
+    flex:1;
+    padding:30px;
+}
+
+.main h1{
+    margin-bottom:30px;
+    color:#333;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#666;
+    margin-bottom:10px;
+}
+
+.valor{
+    font-size:32px;
+    font-weight:bold;
+    color:#E63946;
+}
+
+.tabela{
+    margin-top:40px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#E63946;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+footer{
+    background:#5A3825;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+    <div class="logo">🍔 Food Store Admin</div>
+
+    <a href="{% url 'app' %}" class="back-btn">← 🏠 Voltar para Loja</a>
+    </a>
+
+</header>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h2>Painel</h2>
+
+        <ul>
+            <li>#📊 Dashboard</a></li>
+            <li>#🍔 Produtos</a></li>
+            <li>#📦 Pedidos</a></li>
+            <li>#👥 Clientes</a></li>
+            <li>#🛒 Vendas</a></li>
+            <li>#⚙️ Configurações</a></li>
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <h1>Dashboard</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Pedidos Hoje</h3>
+                <div class="valor">27</div>
+            </div>
+
+            <div class="card">
+                <h3>Clientes</h3>
+                <div class="valor">148</div>
+            </div>
+
+            <div class="card">
+                <h3>Produtos</h3>
+                <div class="valor">32</div>
+            </div>
+
+            <div class="card">
+                <h3>Vendas</h3>
+                <div class="valor">R$ 2.150</div>
+            </div>
+
+        </div>
+
+        <div class="tabela">
+
+            <h2>Últimos Pedidos</h2>
+
+            <br>
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Produto</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>Isaac</td>
+                    <td>X-Tudo</td>
+                    <td>Entregue</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Maria</td>
+                    <td>Pizza Calabresa</td>
+                    <td>Preparando</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>João</td>
+                    <td>Combo Família</td>
+                    <td>Em entrega</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<footer>
+    © 2026 Food Store Admin
+</footer>
+
+</body>
+</html>

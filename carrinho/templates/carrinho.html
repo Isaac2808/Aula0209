@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrinho | Food Store</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    background:#FFF8E8;
+}
+
+/* HEADER */
+
+header{
+    background:#E63946;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    font-size:32px;
+}
+
+/* LAYOUT */
+
+.container{
+    display:flex;
+    flex:1;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    background:white;
+    padding:20px;
+    border-right:2px solid #eee;
+}
+
+.sidebar h2{
+    color:#E63946;
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:12px;
+}
+
+.menu-link{
+    display:block;
+    text-decoration:none;
+    padding:14px;
+    border-radius:10px;
+    background:#f7f7f7;
+    color:#333;
+    font-weight:600;
+    transition:.3s;
+}
+
+.menu-link:hover{
+    background:#FF9F1C;
+    color:white;
+    transform:translateX(5px);
+}
+
+.cart-badge{
+    background:#E63946;
+    color:white;
+    padding:3px 8px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    float:right;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    padding:40px;
+}
+
+.main h2{
+    color:#E63946;
+    margin-bottom:20px;
+}
+
+/* ITENS */
+
+.item{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.item-info h3{
+    margin-bottom:5px;
+}
+
+.preco{
+    color:#E63946;
+    font-weight:bold;
+}
+
+.remover{
+    background:#E63946;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.remover:hover{
+    background:#C72B38;
+}
+
+/* RESUMO */
+
+.resumo{
+    margin-top:20px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.total{
+    margin-top:15px;
+    font-size:28px;
+    font-weight:bold;
+    color:#2A9D8F;
+}
+
+.finalizar{
+    margin-top:20px;
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2A9D8F;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.finalizar:hover{
+    background:#23867B;
+}
+
+.empty{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    color:#777;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+/* FOOTER */
+
+footer{
+    background:#5A3825;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🍔 Food Store</h1>
+</header>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h2>📋 Menu</h2>
+
+        <ul>
+
+            <li>
+                <a href="{% url 'app' %}" class="back-btn">← 🏠 Voltar para Loja</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'carrinho' %}" class="back-btn">Carrinho</a>
+                </a>
+                <span id="contador-carrinho" class="cart-badge">0</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'login' %}" class="back-btn">🔑 Login</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cadastro' %}" class="back-btn">👤 Cadastre-se</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'painel' %}" class="back-btn">📊 Painel</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'c_produto' %}" class="back-btn">📦 Cadastro Produto</a>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <h2>Itens do Carrinho</h2>
+
+        <div id="lista-carrinho"></div>
+
+        <div class="resumo">
+
+            <h2>Resumo do Pedido</h2>
+
+            <div id="total-carrinho" class="total">
+                Total: R$ 0,00
+            </div>
+
+            <button class="finalizar" onclick="finalizarCompra()">
+                ✅ Finalizar Pedido
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<footer>
+    © 2026 Food Store - Todos os direitos reservados.
+</footer>
+
+<script>
+
+let carrinho =
+JSON.parse(localStorage.getItem('carrinho')) || [];
+
+const lista =
+document.getElementById("lista-carrinho");
+
+const total =
+document.getElementById("total-carrinho");
+
+function atualizarContador(){
+
+    let carrinho =
+    JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    const contador =
+    document.getElementById('contador-carrinho');
+
+    if(contador){
+        contador.innerText = carrinho.length;
+    }
+}
+
+function carregarCarrinho(){
+
+    lista.innerHTML = "";
+
+    if(carrinho.length === 0){
+
+        lista.innerHTML = `
+            <div class="empty">
+                Seu carrinho está vazio.
+            </div>
+        `;
+
+        total.innerText = "Total: R$ 0,00";
+
+        atualizarContador();
+
+        return;
+    }
+
+    let valorTotal = 0;
+
+    carrinho.forEach((item,index)=>{
+
+        valorTotal += item.preco;
+
+        lista.innerHTML += `
+            <div class="item">
+
+                <div class="item-info">
+
+                    <h3>${item.nome}</h3>
+
+                    <div class="preco">
+                        R$ ${item.preco.toFixed(2).replace('.', ',')}
+                    </div>
+
+                </div>
+
+                <button
+                    class="remover"
+                    onclick="removerItem(${index})">
+
+                    Remover
+
+                </button>
+
+            </div>
+        `;
+    });
+
+    total.innerText =
+    `Total: R$ ${valorTotal.toFixed(2).replace('.', ',')}`;
+
+    atualizarContador();
+}
+
+function removerItem(index){
+
+    carrinho.splice(index,1);
+
+    localStorage.setItem(
+        'carrinho',
+        JSON.stringify(carrinho)
+    );
+
+    carregarCarrinho();
+}
+
+function finalizarCompra(){
+
+    if(carrinho.length === 0){
+
+        alert("Seu carrinho está vazio!");
+        return;
+    }
+
+    alert("Pedido realizado com sucesso! 🍔");
+
+    localStorage.removeItem("carrinho");
+
+    window.location.reload();
+}
+
+carregarCarrinho();
+
+</script>
+
+</body>
+</html>

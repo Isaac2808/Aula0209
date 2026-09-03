@@ -1,0 +1,23 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#FFF8E8;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.container{
+    display:flex;
+    flex:1;
+}
+
+.main{
+    flex:1;
+    padding:30px;
+}

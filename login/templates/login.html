@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Food Store</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    background:#FFF8E8;
+}
+
+/* HEADER */
+
+header{
+    background:#E63946;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    font-size:32px;
+}
+
+.back-btn{
+    text-decoration:none;
+    background:#2A9D8F;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#23867B;
+}
+
+/* CONTAINER */
+
+.container{
+    display:flex;
+    flex:1;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    background:white;
+    padding:20px;
+    border-right:2px solid #eee;
+}
+
+.sidebar h2{
+    color:#E63946;
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:12px;
+    margin-bottom:10px;
+    background:#f7f7f7;
+    border-radius:8px;
+}
+
+.sidebar li:hover{
+    background:#FF9F1C;
+    color:white;
+    cursor:pointer;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+/* CARD LOGIN */
+
+.login-box{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.login-box h2{
+    text-align:center;
+    color:#E63946;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#FF9F1C;
+}
+
+.btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#E63946;
+    color:white;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#C72B38;
+}
+
+.link-cadastro{
+    text-align:center;
+    margin-top:20px;
+}
+
+.link-cadastro a{
+    color:#2A9D8F;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+    background:#5A3825;
+    color:white;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+    <h1>🍔 Food Store</h1>
+
+    <a href="{% url 'app' %}" class="back-btn">← 🏠 Voltar para Loja</a>
+    </a>
+
+</header>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h2>Menu</h2>
+
+        <ul>
+            <li>🍔 Hambúrgueres</li>
+            <li>🍕 Pizzas</li>
+            <li>🥤 Bebidas</li>
+            <li>🍰 Sobremesas</li>
+            <li>🔥 Promoções</li>
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="login-box">
+
+            <h2>Entrar na Conta</h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" name="senha" required>
+                </div>
+
+                <button type="submit" class="btn">
+                    Entrar
+                </button>
+
+            </form>
+
+            <div class="link-cadastro">
+                <p style="margin-top:15px;">Não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<footer>
+    
+</footer>
+
+</body>
+</html>

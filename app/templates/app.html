@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Store</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#FFF8E8;
+}
+
+/* HEADER */
+
+header{
+    background:#E63946;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.search{
+    width:350px;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+}
+
+/* MENU SUPERIOR */
+
+nav{
+    background:#FF9F1C;
+    padding:15px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+/* LAYOUT */
+
+.container{
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    background:white;
+    padding:20px;
+    border-right:2px solid #eee;
+    min-height:80vh;
+}
+
+.sidebar h2{
+    color:#E63946;
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:12px;
+}
+
+.menu-link{
+    display:block;
+    text-decoration:none;
+    padding:14px;
+    border-radius:10px;
+    background:#f7f7f7;
+    color:#333;
+    font-weight:600;
+    transition:.3s;
+}
+
+.menu-link:hover{
+    background:#FF9F1C;
+    color:white;
+}
+
+.cart-badge{
+    background:#E63946;
+    color:white;
+    padding:3px 8px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-left:5px;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    padding:25px;
+}
+
+/* BANNER */
+
+.banner{
+    height:300px;
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.4),
+    rgba(0,0,0,.4)),
+    url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding-left:60px;
+
+    color:white;
+
+    margin-bottom:30px;
+}
+
+.banner h1{
+    font-size:48px;
+}
+
+.banner p{
+    font-size:22px;
+    margin-top:10px;
+}
+
+/* PRODUTOS */
+
+.produtos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.preco{
+    color:#E63946;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.btn{
+    width:100%;
+    background:#2A9D8F;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#23867B;
+}
+
+/* FOOTER */
+
+footer{
+    background:#5A3825;
+    color:white;
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:30px;
+    padding:30px;
+}
+
+.footer-section h3{
+    color:#FF9F1C;
+    margin-bottom:10px;
+}
+
+.footer-section a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    margin-bottom:6px;
+}
+
+.footer-section a:hover{
+    color:#FF9F1C;
+}
+
+.footer-bottom{
+    text-align:center;
+    padding:15px;
+    background:#452A1E;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+    <div class="logo">🍔 FOOD STORE</div>
+
+    <input
+        class="search"
+        type="text"
+        placeholder="Buscar comidas..."
+    >
+
+</header>
+
+<nav>
+    <ul>
+        <li>#Início</li>
+        <li>#Hambúrgueres</li>
+        <li>#Pizzas</li>
+        <li>#Bebidas</li>
+        <li>#Sobremesas</li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h2>📋 Menu</h2>
+
+        <ul>
+
+            <li>
+                <a href="{% url 'app' %}" class="back-btn">← 🏠 Voltar para Loja</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'carrinho' %}" class="back-btn">Carrinho</a>
+                </a>
+                    <span id="contador-carrinho" class="cart-badge">0</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'login' %}" class="back-btn">🔑 Login</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'cadastro' %}" class="back-btn">👤 Cadastre-se</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'painel' %}" class="back-btn">📊 Painel</a>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'c_produto' %}" class="back-btn">📦 Cadastro Produto</a>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <section class="banner">
+            <h1>Sabor que conquista</h1>
+            <p>Peça agora e receba em minutos 🚚</p>
+        </section>
+
+        <section class="produtos">
+
+            <!-- Produto 1 -->
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600">
+
+                <div class="card-content">
+
+                    <h3>X-Tudo Especial</h3>
+
+                    <div class="preco">
+                        R$ 29,90
+                    </div>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarCarrinho('X-Tudo Especial', 29.90)">
+                        Adicionar ao Carrinho
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Produto 2 -->
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600">
+
+                <div class="card-content">
+
+                    <h3>Pizza Calabresa</h3>
+
+                    <div class="preco">
+                        R$ 49,90
+                    </div>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarCarrinho('Pizza Calabresa', 49.90)">
+                        Adicionar ao Carrinho
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Produto 3 -->
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600">
+
+                <div class="card-content">
+
+                    <h3>Combo Família</h3>
+
+                    <div class="preco">
+                        R$ 79,90
+                    </div>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarCarrinho('Combo Família', 79.90)">
+                        Adicionar ao Carrinho
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-section">
+            <h3>🍔 Food Store</h3>
+            <p>Os melhores sabores da cidade.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Links</h3>
+
+            {% url 'app' %}Loja</a>
+            {% url 'login' %}Login</a>
+            {% url 'cadastro' %}Cadastro</a>
+
+        </div>
+
+        <div class="footer-section">
+            <h3>Contato</h3>
+            <p>📞 (21) 99999-9999</p>
+            <p>📧 contato@foodstore.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Food Store • Todos os direitos reservados.
+    </div>
+
+</footer>
+
+<script>
+
+function adicionarCarrinho(nome, preco){
+
+    let carrinho =
+    JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    carrinho.push({
+        nome:nome,
+        preco:preco
+    });
+
+    localStorage.setItem(
+        'carrinho',
+        JSON.stringify(carrinho)
+    );
+
+    atualizarContador();
+
+    alert(nome + " adicionado ao carrinho!");
+}
+
+function atualizarContador(){
+
+    let carrinho =
+    JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    const contador =
+    document.getElementById('contador-carrinho');
+
+    contador.innerText = carrinho.length;
+}
+
+window.onload = function(){
+    atualizarContador();
+};
+
+</script>
+
+</body>
+</html>

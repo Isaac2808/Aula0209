@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Produto | Food Store</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    background:#FFF8E8;
+}
+
+/* HEADER */
+
+header{
+    background:#E63946;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    font-size:32px;
+}
+
+.back-btn{
+    text-decoration:none;
+    background:#2A9D8F;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    background:#23867B;
+}
+
+/* CONTAINER */
+
+.container{
+    display:flex;
+    flex:1;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    background:white;
+    padding:20px;
+    border-right:2px solid #eee;
+}
+
+.sidebar h2{
+    color:#E63946;
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:12px;
+    margin-bottom:10px;
+    background:#f7f7f7;
+    border-radius:8px;
+}
+
+.sidebar li:hover{
+    background:#FF9F1C;
+    color:white;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+/* FORM */
+
+.form-box{
+    width:100%;
+    max-width:700px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.form-box h2{
+    text-align:center;
+    color:#E63946;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+textarea{
+    resize:none;
+}
+
+.btn{
+    width:100%;
+    padding:14px;
+    background:#E63946;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#C72B38;
+}
+
+/* FOOTER */
+
+footer{
+    background:#5A3825;
+    color:white;
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    padding:30px;
+}
+
+.footer-bottom{
+    text-align:center;
+    padding:15px;
+    background:#452A1E;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+    <h1>🍔 Food Store</h1>
+
+    <a href="{% url 'app' %}" class="back-btn">← 🏠 Voltar para Loja</a>
+    </a>
+
+</header>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h2>📦 Produtos</h2>
+
+        <ul>
+            <li>🍔 Hambúrguer</li>
+            <li>🍕 Pizza</li>
+            <li>🥤 Bebida</li>
+            <li>🍟 Porções</li>
+            <li>🍰 Sobremesa</li>
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="form-box">
+
+            <h2>Cadastro de Produto</h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Nome do Produto</label>
+                    <input type="text" name="nome">
+                </div>
+
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select name="categoria">
+                        <option>Hambúrguer</option>
+                        <option>Pizza</option>
+                        <option>Bebida</option>
+                        <option>Porção</option>
+                        <option>Sobremesa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Preço</label>
+                    <input type="number" step="0.01" name="preco">
+                </div>
+
+                <div class="form-group">
+                    <label>Quantidade em Estoque</label>
+                    <input type="number" name="estoque">
+                </div>
+
+                <div class="form-group">
+                    <label>URL da Imagem</label>
+                    <input type="text" name="imagem">
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea rows="5" name="descricao"></textarea>
+                </div>
+
+                <button class="btn" type="submit">
+                    Cadastrar Produto
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+<footer>
+
+    <div class="footer-content">
+        <div>
+            <h3>🍔 Food Store</h3>
+            <p>Sistema de gerenciamento de produtos.</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Food Store
+    </div>
+
+</footer>
+
+</body>
+</html>
