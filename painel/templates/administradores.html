@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administradores</title>
+</head>
+<body>
+
+    <h1>🔐 PAINEL DOS ADMINISTRADORES</h1>
+
+    <h2>Olá, {{ request.user.first_name }}!</h2>
+
+    <p>Seu grupo é:</p>
+    <strong>administradores</strong>
+
+    <hr>
+
+    <p>✅ Se você está vendo esta página, o grupo de administradores está funcionando.</p>
+
+    <p>Usuário: {{ request.user.username }}</p>
+    <p>E-mail: {{ request.user.email }}</p>
+
+</body>
+</html>

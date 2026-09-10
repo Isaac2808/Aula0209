@@ -1,244 +1,563 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login | Food Store</title>
 
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+    <title>Login | Food Store</title>
 
-body{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    background:#FFF8E8;
-}
+    <style>
 
-/* HEADER */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-header{
-    background:#E63946;
-    color:white;
-    padding:20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #FFF8E8;
+        }
 
-header h1{
-    font-size:32px;
-}
+        /* HEADER */
 
-.back-btn{
-    text-decoration:none;
-    background:#2A9D8F;
-    color:white;
-    padding:12px 20px;
-    border-radius:10px;
-    font-weight:bold;
-    transition:.3s;
-}
+        header {
+            background: #E63946;
+            color: white;
+            padding: 20px 40px;
 
-.back-btn:hover{
-    background:#23867B;
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* CONTAINER */
+        header h1 {
+            font-size: 32px;
+        }
 
-.container{
-    display:flex;
-    flex:1;
-}
+        /* BOTÃO VOLTAR */
 
-/* SIDEBAR */
+        .back-btn {
+            text-decoration: none;
+            background: #2A9D8F;
+            color: white;
 
-.sidebar{
-    width:250px;
-    background:white;
-    padding:20px;
-    border-right:2px solid #eee;
-}
+            padding: 12px 20px;
 
-.sidebar h2{
-    color:#E63946;
-    margin-bottom:20px;
-}
+            border-radius: 10px;
 
-.sidebar ul{
-    list-style:none;
-}
+            font-weight: bold;
 
-.sidebar li{
-    padding:12px;
-    margin-bottom:10px;
-    background:#f7f7f7;
-    border-radius:8px;
-}
+            transition: .3s;
 
-.sidebar li:hover{
-    background:#FF9F1C;
-    color:white;
-    cursor:pointer;
-}
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+        }
 
-/* MAIN */
+        .back-btn:hover {
+            background: #23867B;
 
-.main{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px;
-}
+            transform: translateY(-2px);
 
-/* CARD LOGIN */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, .20);
+        }
 
-.login-box{
-    width:100%;
-    max-width:500px;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.1);
-}
+        /* CONTAINER */
 
-.login-box h2{
-    text-align:center;
-    color:#E63946;
-    margin-bottom:25px;
-}
+        .container {
+            display: flex;
+            flex: 1;
+        }
 
-.form-group{
-    margin-bottom:20px;
-}
+        /* SIDEBAR */
 
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:600;
-}
+        .sidebar {
+            width: 250px;
 
-input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
+            background: white;
 
-input:focus{
-    outline:none;
-    border-color:#FF9F1C;
-}
+            padding: 20px;
 
-.btn{
-    width:100%;
-    padding:14px;
-    border:none;
-    background:#E63946;
-    color:white;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    font-weight:bold;
-}
+            border-right: 2px solid #eee;
+        }
 
-.btn:hover{
-    background:#C72B38;
-}
+        .sidebar h2 {
+            color: #E63946;
 
-.link-cadastro{
-    text-align:center;
-    margin-top:20px;
-}
+            margin-bottom: 20px;
+        }
 
-.link-cadastro a{
-    color:#2A9D8F;
-    text-decoration:none;
-    font-weight:bold;
-}
+        .sidebar ul {
+            list-style: none;
+        }
 
-/* FOOTER */
+        .sidebar li {
+            padding: 12px;
 
-footer{
-    background:#5A3825;
-    color:white;
-}
+            margin-bottom: 10px;
 
-</style>
+            background: #f7f7f7;
+
+            border-radius: 8px;
+
+            transition: .3s;
+        }
+
+        .sidebar li:hover {
+            background: #FF9F1C;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        /* MAIN */
+
+        .main {
+            flex: 1;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px;
+        }
+
+        /* LOGIN */
+
+        .login-box {
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .10);
+        }
+
+        .login-box h2 {
+            text-align: center;
+
+            color: #E63946;
+
+            margin-bottom: 25px;
+        }
+
+        /* MENSAGENS */
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 10px;
+
+            font-size: 14px;
+        }
+
+        .message.success {
+            background: #d4edda;
+
+            color: #155724;
+
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+
+            color: #721c24;
+
+            border: 1px solid #f5c6cb;
+        }
+
+        .message.warning {
+            background: #fff3cd;
+
+            color: #856404;
+
+            border: 1px solid #ffeeba;
+        }
+
+        .message.info {
+            background: #d1ecf1;
+
+            color: #0c5460;
+
+            border: 1px solid #bee5eb;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            transition: .3s;
+        }
+
+        input:focus {
+            outline: none;
+
+            border-color: #FF9F1C;
+
+            box-shadow: 0 0 0 3px rgba(255, 159, 28, .15);
+        }
+
+        /* BOTÃO */
+
+        .btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            background: #E63946;
+
+            color: white;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: #C72B38;
+
+            transform: translateY(-1px);
+        }
+
+        /* CADASTRO */
+
+        .link-cadastro {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #555;
+        }
+
+        .link-cadastro a {
+            color: #2A9D8F;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .link-cadastro a:hover {
+            text-decoration: underline;
+
+            color: #23867B;
+        }
+
+        /* ESQUECI SENHA */
+
+        .forgot-password {
+            text-align: right;
+
+            margin-top: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #E63946;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #5A3825;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 15px;
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 768px) {
+
+            header {
+                padding: 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 26px;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+
+                border-right: none;
+
+                border-bottom: 2px solid #eee;
+            }
+
+            .sidebar ul {
+                display: grid;
+
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 10px;
+            }
+
+            .sidebar li {
+                margin-bottom: 0;
+            }
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .login-box {
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-<header>
 
-    <h1>🍔 Food Store</h1>
+    <!-- HEADER -->
 
-    <a href="{% url 'app' %}" class="back-btn">← 🏠 Voltar para Loja</a>
-    </a>
+    <header>
 
-</header>
+        <h1>🍔 Food Store</h1>
 
-<div class="container">
+        <a href="{% url 'app' %}" class="back-btn">
+            ← 🏠 Voltar para Loja
+        </a>
 
-    <aside class="sidebar">
+    </header>
 
-        <h2>Menu</h2>
 
-        <ul>
-            <li>🍔 Hambúrgueres</li>
-            <li>🍕 Pizzas</li>
-            <li>🥤 Bebidas</li>
-            <li>🍰 Sobremesas</li>
-            <li>🔥 Promoções</li>
-        </ul>
+    <!-- CONTAINER -->
 
-    </aside>
+    <div class="container">
 
-    <main class="main">
 
-        <div class="login-box">
+        <!-- SIDEBAR -->
 
-            <h2>Entrar na Conta</h2>
+        <aside class="sidebar">
 
-            <form method="POST">
+            <h2>Menu</h2>
 
-                {% csrf_token %}
+            <ul>
 
-                <div class="form-group">
-                    <label>E-mail</label>
-                    <input type="email" name="email" required>
+                <li>🍔 Hambúrgueres</li>
+
+                <li>🍕 Pizzas</li>
+
+                <li>🥤 Bebidas</li>
+
+                <li>🍰 Sobremesas</li>
+
+                <li>🔥 Promoções</li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <div class="login-box">
+
+
+                <h2>Entrar na Conta</h2>
+
+
+                <!-- MENSAGENS DO DJANGO -->
+
+                {% if messages %}
+
+                    <div class="messages">
+
+                        {% for message in messages %}
+
+                            <div class="message {{ message.tags }}">
+
+                                {{ message }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- FORMULÁRIO -->
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- E-MAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Digite seu e-mail"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SENHA -->
+
+                    <div class="form-group">
+
+                        <label for="senha">
+                            Senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Digite sua senha"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ESQUECI SENHA -->
+
+                    <div class="forgot-password">
+
+                        <a href="#">
+                            Esqueci minha senha
+                        </a>
+
+                    </div>
+
+
+                    <!-- BOTÃO -->
+
+                    <button type="submit" class="btn">
+                        Entrar
+                    </button>
+
+                </form>
+
+
+                <!-- CADASTRO -->
+
+                <div class="link-cadastro">
+
+                    <p>
+                        Não tem conta?
+
+                        <a href="{% url 'cadastro' %}">
+                            Cadastre-se
+                        </a>
+                    </p>
+
                 </div>
 
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" name="senha" required>
-                </div>
 
-                <button type="submit" class="btn">
-                    Entrar
-                </button>
-
-            </form>
-
-            <div class="link-cadastro">
-                <p style="margin-top:15px;">Não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
             </div>
 
-        </div>
+        </main>
 
-    </main>
+    </div>
 
-</div>
 
-<footer>
-    
-</footer>
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            🍔 Food Store © 2026
+        </p>
+
+    </footer>
+
 
 </body>
+
 </html>

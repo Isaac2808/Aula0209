@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'carrinho',
     'painel',
     'c_produto',
+    'sistema',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Configuração de E-mail (Gmail SMTP)
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = ''          # Seu e-mail completo do Gmail
+    EMAIL_HOST_PASSWORD = ''
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Login Redirect URL
+LOGIN_REDIRECT_URL = 'painel_redirect'
+
+# Login URL para redirecionamento de usuários não autenticados
+LOGIN_URL = 'login'
